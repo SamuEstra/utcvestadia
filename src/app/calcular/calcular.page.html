@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Calculadora</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content-margin">
+  <ion-item class="ion-item">
+    <ion-label position="floating">Ingresa un número</ion-label>
+    <ion-input [(ngModel)]="inputNumber" type="text"></ion-input>
+  </ion-item>
+  <ion-item class="ion-item">
+    <ion-label>Selecciona el sistema</ion-label>
+    <ion-select [(ngModel)]="selectedSystem" style="margin-right: 30px;">
+      <ion-select-option value="decimal">Decimal</ion-select-option>
+      <ion-select-option value="binario">Binario</ion-select-option>
+      <ion-select-option value="octal">Octal</ion-select-option>
+      <ion-select-option value="hexadecimal">Hexadecimal</ion-select-option>
+      <ion-select-option value="maya">Maya</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button expand="block" color="medium" (click)="convertir()">Convertir</ion-button>
+  <ion-button expand="block" color="medium" (click)="limpiar()">Vaciar</ion-button>
+
+  <div *ngIf="resultsVisible">
+    <ion-card class="result-box">
+      <ion-card-header>
+        <ion-card-title>Resultados</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+
+        <div class="result-item">
+          <p>Binario: {{ binario }}</p>
+          <ion-button fill="clear" size="small" class="icon-button" (click)="toggleInfo('decimal')">
+            <ion-icon name="information-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+
+        <div class="result-item">
+          <p>Decimal: {{ decimal }}</p>
+          <ion-button fill="clear" size="small" class="icon-button" (click)="toggleInfo('binario')">
+            <ion-icon name="information-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+
+        <div class="result-item">
+          <p>Octal: {{ octal }}</p>
+          <ion-button fill="clear" size="small" class="icon-button" (click)="toggleInfo('octal')">
+            <ion-icon name="information-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+        <div class="result-item">
+          <p>Hexadecimal: {{ hexadecimal }}</p>
+          <ion-button fill="clear" size="small" class="icon-button" (click)="toggleInfo('hexadecimal')">
+            <ion-icon name="information-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+        <div class="result-item">
+          <p>Maya: {{ maya }}</p>
+          <ion-button fill="clear" size="small" class="icon-button" (click)="toggleInfo('maya')">
+            <ion-icon name="information-circle-outline"></ion-icon>
+          </ion-button>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <ion-card *ngIf="showInfoCard" class="info-card">
+    <ion-card-header>
+      <ion-card-title>{{ cardTitle }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content [innerHTML]="cardContent">
+
+    </ion-card-content>
+    <ion-button expand="full" (click)="closeCard()">Cerrar</ion-button>
+  </ion-card>
+</ion-content>
