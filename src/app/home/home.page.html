@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" style="background-color: white;">
+  <div class="banner">
+    <h2 style="font-size: 40px; font-weight: bold; text-align: center; font-family: Oswald;">Atrevete a aprender</h2>
+    <div class="title">
+    </div>
+  </div>  
+
+  <ion-card class="card-item">
+    <ion-card-header>
+      <ion-card-title class="titulo" style="text-align: center;">Sistemas numéricos</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-list>
+        <ion-item (click)="handleItemClick(1)">
+          <ion-label style="text-align: center;">Binario</ion-label>
+        </ion-item>
+  
+        <ion-item (click)="handleItemClick(2)">
+          <ion-label style="text-align: center;">Decimal</ion-label>
+        </ion-item>
+  
+        <ion-item (click)="handleItemClick(3)">
+          <ion-label style="text-align: center;">Octal</ion-label>
+        </ion-item>
+  
+        <ion-item lines="none" (click)="handleItemClick(4)">
+          <ion-label style="text-align: center;">Hexadecimal</ion-label>
+        </ion-item>
+
+        <ion-item (click)="handleItemClick(5)">
+          <ion-label style="text-align: center;">Maya</ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-card *ngIf="selectedItem !== null" class="selected-item-card">
+    <ion-card-content class="video-container" style="align-content: center;">
+      <video #videoElement autoplay muted loop [src]="getVideoUrl(selectedItem)" class="video-bg"></video>
+      <ion-button *ngIf="isMobile()" (click)="toggleFullscreen(videoElement)" class="fullscreen-button">Pantalla Completa</ion-button>
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
